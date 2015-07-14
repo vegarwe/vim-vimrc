@@ -27,7 +27,7 @@ set nrformats-=octal
 set ttimeout
 set ttimeoutlen=100
 
-set incsearch
+"set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -84,6 +84,11 @@ set sessionoptions-=options
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
+
+" Highlight end of line white space
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+:autocmd Syntax * syn match WhitespaceEOL /\s\+$\| \+\ze\t/
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
