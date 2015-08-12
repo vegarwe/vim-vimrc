@@ -3,7 +3,6 @@
 " $Id: .vimrc,v 1.9 2010/07/08 11:43:20 vegarwe Exp $
 
 "execute pathogen#infect()
-
 " ========== <Vundle> ==============
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -35,6 +34,7 @@ let osys=system('uname -s')
 let vimdir=$HOME . '/.vim/'
 let &viminfo="'20," . '%,n' . vimdir . 'viminfo'
 let &backupdir=vimdir . 'tmp'
+set backup                  " Keep a backup file
 
 if osys =~ "SunOS"
     set term=xtermc
@@ -42,60 +42,6 @@ if osys =~ "SunOS"
 elseif osys =~ "Linux"
     colorscheme elflord
 endif
-
-
-"syntax on
-"
-"set nocompatible            " Use Vim defaults (much better!)
-"set autoindent
-""set smartindent             " Always set auto-indenting on (smartindent is deprecated)
-""set bs=2                    " Allow backspacing over everything in insert mode
-set colorcolumn=100
-set bg=dark                 " gir ugly ugly farger, men men
-set backup                  " Keep a backup file
-"set backspace=indent,eol,start
-"set clipboard+=unnamed      " put yanks/etc on the clipboard
-"set errorbells              " beep/flash on errors, vil vi ha det da ???
-"set novisualbell            " sørge for at vi bare får flash ihverfall
-"set encoding=utf-8
-set expandtab
-"set foldmethod=marker
-"set foldlevelstart=99       " start with all folds open
-"set foldopen-=search        " don't open folds when you search into them
-""set foldopen-=undo          " don't open folds when you undo stuff
-"set history=1000            " keep 50 lines of command history
-"set hidden                  " lukker ikke ei fil i et buffer når du forlater den ('abandon')
-set hlsearch                " highlighter siste søk, kjekt....
-""set incsearch              " noen syntes dette er nice, jeg synes ikke det :P
-set nowrap                  " vi liker da ikke wrap'ing... bare dritt
-set number                  " for å få linjenumrering... litt slitsomt i starten
-set nowarn
-"set ruler                   " Show the cursor position all the time
-"set suffixes+=.class,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-"set showcmd
-"set showmatch               " vise fold'a kode eller noe... ???
-"set smartcase               " lurt når man driver å søker...
-"set shortmess+=at           " shortens messages to avoid 'press a key' prompt
-set shiftwidth=4            " two spaces per sw
-set smarttab                " sw at start, not tab
-set splitbelow
-set splitright
-set sts=4
-set tabstop=4               " The One True Tab
-""set textwidth=79           " set normal border; can unset for coding
-"set timeout                 " allow keys to timeout
-"set timeoutlen=3000         " timeout after 3s
-""set viminfo='20,\"50       " read/write a .viminfo file -- limit to only 50
-"set wildmode=list:longest   " (file-listing when opening a new file)
-"set mouse=""                " OOOOOOOOOOOOOOOO, linjenummer blir ikke med når jeg higlighter!!!
-"set cinkeys-=:
-"set formatoptions+=ro       " See :help fo-table
-
-" Set a satusline that gives some cool information.
-"set statusline=%<%F%h%m%r%=\[%B\]\ %l,%c%V\ %P
-"set statusline=%3*[%1*%02n%3*]%*\ %1*%F%*\ %2*%(%4*%m%2*%r%h%w%y%)%*\ %=%3*[%1*%{strftime(\"%Y-%m-%d\ %H:%M\")}%3*]%*\ %15(%3*<%1*%c%V,%l%3*/%1*%L%3*>%)%*
-" We only want the statusline when we have more than one window.
-"set laststatus=2 " or set to 2 to show always!
 
 " ========== <key bindings> ==============
 let mapleader = "\<Enter>"
@@ -105,16 +51,15 @@ nnoremap <Leader>g :!git<Space>
 vmap    v  <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" adsf
-nnoremap  <xF1> <nop>
-inoremap  <xF1> <nop>
-:nnoremap <silent> <F2> :call g:ToggleSelectMode()<CR>
+nnoremap <xF1> <nop>
+inoremap <xF1> <nop>
+nnoremap <silent> <F2> :call g:ToggleSelectMode()<CR>
 set pastetoggle=<F3>
-:nnoremap <silent> <F3> :set invpaste<CR>
-:nnoremap <silent> <F4> :set invnumber<CR>
-:nnoremap <F5> :ls<CR>:b
-nnoremap  <F7> :!MSBuild.exe build.xml /t:Local
-nnoremap  <F8> :!cygstart `find . -iname '*.uvproj'`
+nnoremap <silent> <F3> :set invpaste<CR>
+nnoremap <silent> <F4> :set invnumber<CR>
+nnoremap <F5> :ls<CR>:b
+nnoremap <F7> :!MSBuild.exe build.xml /t:Local
+nnoremap <F8> :!cygstart `find . -iname '*.uvproj'`
 
 " split windows vertically, pleeeeease.
 nnoremap <C-W><C-N> :vnew<CR>
@@ -131,15 +76,20 @@ nnoremap q: :q
 map Q gq
 " ========== </key bindings> =============
 
-" alfborge, hva gjør disse?
-"nnoremap <silent> ,i i?<Esc>r
-"nnoremap <silent> ,a a?<Esc>r
-
 " If we have a saved position in the file, go there.
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal g`\"" |
             \ endif
+
+" Change directory to the directory of the file I'm working on.
+"autocmd BufEnter *
+"        \ if isdirectory( '%:p:h' ) |
+"        \     lcd %:p:h |
+"        \ endif
+
+" Pr file type changes
+"au BufNewFile,BufRead *py      set et sw=4
 
 " ========== <Latex> ==============
 " Disable autoloading of vimspell
@@ -166,12 +116,6 @@ autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
 
-"" Change directory to the directory of the file I'm working on.
-"autocmd BufEnter *
-"        \ if isdirectory( '%:p:h' ) |
-"        \     lcd %:p:h |
-"        \ endif
-
 " litt usikker på denne også, men det kan se ut til at
 " vi slipper disse tegnene (^[4%dm,^[3%dm) og det er bra
 if &term=="xterm"
@@ -181,6 +125,7 @@ if &term=="xterm"
   set t_Sf=^[3%dm
 endif
 
+" ========== <Mutt> ==============
 "function! FormatMail()
 "    " Fjern signatur
 "    "if search('^> -- $', 'bw') != 0
@@ -205,8 +150,9 @@ endif
 "au BufRead mutt-* set et sw=2 ts=2
 "au BufRead mutt-* call FormatMail()
 "au BufNewFile,BufRead mutt*    set tw=77 ai nocindent fileencoding=utf-8
-"au BufNewFile,BufRead *py      set et sw=4
+" ========== </Mutt> ==============
 
+" ========== <Copy-paste-mode> ==============
 " Make it possible to select text with the mouse (for copying)
 function! g:ToggleSelectMode()
   if &colorcolumn != ''
@@ -220,4 +166,5 @@ function! g:ToggleSelectMode()
   endif
 endfunction
 nnoremap <silent> <leader>cc :call g:ToggleSelectMode()<CR>
+" ========== </Copy-paste-mode> ==============
 
