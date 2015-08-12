@@ -8,12 +8,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -30,12 +24,6 @@ Plugin 'file:///home/vegarwe/devel/statusline/'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
-
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
@@ -48,20 +36,12 @@ let vimdir=$HOME . '/.vim/'
 let &viminfo="'20," . '%,n' . vimdir . 'viminfo'
 let &backupdir=vimdir . 'tmp'
 
-""filetype plugin indent on
-
 if osys =~ "SunOS"
     set term=xtermc
     colorscheme desert
 elseif osys =~ "Linux"
     colorscheme elflord
 endif
-
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
 
 
 "syntax on
@@ -128,14 +108,10 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " adsf
 nnoremap  <xF1> <nop>
 inoremap  <xF1> <nop>
-":nnoremap <F1> <C-o> <nop>
-":inoremap <F1> <C-o> <nop>
-:nnoremap <F2> :call g:ToggleSelectMode()<CR>
+:nnoremap <silent> <F2> :call g:ToggleSelectMode()<CR>
 set pastetoggle=<F3>
-:inoremap <F3> :set invpaste<CR>
-:nnoremap <F3> :set invpaste<CR>
-"inoremap  <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
-:nnoremap <F4> :set invnumber<CR>
+:nnoremap <silent> <F3> :set invpaste<CR>
+:nnoremap <silent> <F4> :set invnumber<CR>
 :nnoremap <F5> :ls<CR>:b
 nnoremap  <F7> :!MSBuild.exe build.xml /t:Local
 nnoremap  <F8> :!cygstart `find . -iname '*.uvproj'`
@@ -243,12 +219,5 @@ function! g:ToggleSelectMode()
     set number
   endif
 endfunction
-"nnoremap <silent> <leader>cc :call g:ToggleSelectMode()<CR>
-
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
-
+nnoremap <silent> <leader>cc :call g:ToggleSelectMode()<CR>
 
