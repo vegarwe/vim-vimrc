@@ -87,8 +87,9 @@ endif
 
 " Highlight end of line white space
 highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-:autocmd Syntax * syn match WhitespaceEOL /\s\+$\| \+\ze\t/
+"match WhitespaceEOL /\s\+$\| \+\ze\t/
+:autocmd BufWinEnter * match WhitespaceEOL /\s\+$\| \+\ze\t/
+
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
