@@ -7,39 +7,40 @@ hi User1 ctermbg=DarkYellow ctermfg=Black guibg=DarkYellow guifg=Black
 hi User2 ctermbg=DarkGray   ctermfg=Green guibg=DarkGray   guifg=SeaGreen cterm=bold term=bold
 hi User3 ctermbg=DarkGray   ctermfg=White guibg=DarkGray   guifg=White
 hi User4 ctermbg=Grey       ctermfg=Black guibg=Grey       guifg=Black
+hi User5 ctermbg=Grey       ctermfg=Red   guibg=Grey       guifg=Red
 
 "statusline setup
-"set statusline=%f           "tail of the filename
-set statusline=             "clear status line
+"set statusline=%f                   "tail of the filename
+set statusline=                     "clear status line
 "set statusline+=\"%{v:register}\          "active register
-set statusline+=%1*\ %n\ %* "buffer number
-"set statusline+=%F\         "full file name
-set statusline+=%2*         "Set color for filename section
-set statusline+=\ %<%F      "relative path
-set statusline+=%3*         "Set color for file flags
-set statusline+=%r          "read only flag
-set statusline+=%m          "modified flag
+set statusline+=%1*\ %n\ %*         "buffer number
+"set statusline+=%F\                 "full file name
+set statusline+=%2*                 "Set color for filename section
+set statusline+=\ %<%F              "relative path
+set statusline+=%3*                 "Set color for file flags
+set statusline+=%r                  "read only flag
+set statusline+=%m                  "modified flag
 
 "display a warning if &paste is set
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%2*         "Set color for filename section
+set statusline+=%2*                 "Set color for filename section
 
-set statusline+=%=          "left/right separator
-set statusline+=%*          "End file name section color
-set statusline+=%4*         "Set color for info section
+set statusline+=%=                  "left/right separator
+set statusline+=%*                  "End file name section color
+set statusline+=%4*                 "Set color for info section
 
 set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
 
 set statusline+=%{StatuslineLongLineWarning()}      " lone lines
 
 "set statusline+=%{fugitive#statusline()}
-
+"set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=--%{GitBranchInfoFindDir()}--
 
 "Look for errors in loclist
-"set statusline+=%#warningmsg#
+set statusline+=%5*
 set statusline+=%{Get_errors()}
-"set statusline+=%*
+set statusline+=%4*
 
 "display a warning if &et is wrong, or we have mixed-indenting
 "set statusline+=%#error#
@@ -47,39 +48,29 @@ set statusline+=%{StatuslineTabWarning()}
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 "set statusline+=%*
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
+set statusline+=%h                  "help file flag
+set statusline+=%y                  "filetype
 
 "display a warning if fileformat isnt unix and encoding isnt utf-8
-"set statusline+=%#warningmsg#
-"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"set statusline+=%*
 set statusline+=[
-"set statusline+=%#error#
+set statusline+=%5*
 set statusline+=%{RenderStlFlag(&ff,'unix',1)}
-"set statusline+=%*
+set statusline+=%4*
 set statusline+=%{RenderStlFlag(&ff,'unix',0)}
 set statusline+=,
-"set statusline+=%#error#
+set statusline+=%5*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',1)}
-"set statusline+=%*
+set statusline+=%4*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',0)}
 set statusline+=]
 
-set statusline+=[%{FileSize()}]\  " Show file size
+set statusline+=[%{FileSize()}]     " Show file size
 
 "set statusline+=%2*0x%04B\ %*          "character under cursor
-set statusline+=%1*         "Set color for nav section
-"set statusline+=%4c:         "cursor column
-"set statusline+=%4l/%L     "line/total lines
+set statusline+=%1*                 "Set color for nav section
 set statusline+=%14(%c:%3l/%L%)     "cursor line/total lines
-set statusline+=\ %P        "percent through file
-set statusline+=%*          "End nav section color
+set statusline+=\ %P                "percent through file
+set statusline+=%*                  "End nav section color
 set laststatus=2
 
 "recalculate the trailing whitespace warning when idle, and after saving
@@ -259,12 +250,12 @@ function! Get_errors()
 
     let res = ''
     if errors > 0
-        "let res .= 'E: ' . errors . error_line . ' '
-        let res .= 'E: ' . errors
+        let res .= 'E: ' . errors . error_line . ' '
+        "let res .= 'E: ' . errors
     endif
     if warns > 0
-        let res .= ' W: ' . warns
         "let res .= 'W: ' . warns . warn_line . ' '
+        let res .= ' W: ' . warns
     endif
     if len(res) > 0
         return '[' . res . ']'
