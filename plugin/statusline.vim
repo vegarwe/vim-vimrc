@@ -1,30 +1,32 @@
+" Black, White     Grey, DarkGrey  DarkRed          Red
+" DarkBlue         Blue            DarkMagenta      Magenta
+" DarkGreen        Green           DarkYellow       Yellow
+" DarkCyan         Cyan
 
-hi User1 ctermbg=green  ctermfg=red   guibg=green  guifg=red
-hi User2 ctermbg=red    ctermfg=blue  guibg=red    guifg=blue
-hi User3 ctermbg=blue   ctermfg=green guibg=blue   guifg=green
-hi User4 ctermbg=blue   ctermfg=red   guibg=red    guifg=green
-hi User5 ctermbg=brown  ctermfg=black guibg=brown  guifg=black
-hi User6 ctermbg=brown  ctermfg=black guibg=brown  guifg=black
+hi User1 ctermbg=DarkYellow ctermfg=Black guibg=DarkYellow guifg=Black
+hi User2 ctermbg=DarkGray   ctermfg=Green guibg=DarkGray   guifg=SeaGreen cterm=bold term=bold
+hi User3 ctermbg=DarkGray   ctermfg=White guibg=DarkGray   guifg=White
+hi User4 ctermbg=Grey       ctermfg=Black guibg=Grey       guifg=Black
 
 "statusline setup
 "set statusline=%f           "tail of the filename
 set statusline=             "clear status line
-set statusline+=\"%{v:register}\          "active register
+"set statusline+=\"%{v:register}\          "active register
 set statusline+=%1*\ %n\ %* "buffer number
 "set statusline+=%F\         "full file name
-
-set statusline+=%3*         "Set color for filename section
-set statusline+=\ %<%F "full path
+set statusline+=%2*         "Set color for filename section
+set statusline+=\ %<%F      "relative path
+set statusline+=%3*         "Set color for file flags
 set statusline+=%r          "read only flag
 set statusline+=%m          "modified flag
 
 "display a warning if &paste is set
-set statusline+=%4*         "Set color for filename section
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%3*
+set statusline+=%2*         "Set color for filename section
 
 set statusline+=%=          "left/right separator
 set statusline+=%*          "End file name section color
+set statusline+=%4*         "Set color for info section
 
 set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
 
@@ -32,16 +34,18 @@ set statusline+=%{StatuslineLongLineWarning()}      " lone lines
 
 "set statusline+=%{fugitive#statusline()}
 
+"set statusline+=--%{GitBranchInfoFindDir()}--
+
 "Look for errors in loclist
-set statusline+=%#warningmsg#
+"set statusline+=%#warningmsg#
 set statusline+=%{Get_errors()}
-set statusline+=%*
+"set statusline+=%*
 
 "display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
+"set statusline+=%#error#
 set statusline+=%{StatuslineTabWarning()}
 set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%*
+"set statusline+=%*
 
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -56,26 +60,26 @@ set statusline+=%y      "filetype
 "set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
 "set statusline+=%*
 set statusline+=[
-set statusline+=%#error#
+"set statusline+=%#error#
 set statusline+=%{RenderStlFlag(&ff,'unix',1)}
-set statusline+=%*
+"set statusline+=%*
 set statusline+=%{RenderStlFlag(&ff,'unix',0)}
 set statusline+=,
-set statusline+=%#error#
+"set statusline+=%#error#
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',1)}
-set statusline+=%*
+"set statusline+=%*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',0)}
 set statusline+=]
 
 set statusline+=[%{FileSize()}]\  " Show file size
 
 "set statusline+=%2*0x%04B\ %*          "character under cursor
-set statusline+=%5*
+set statusline+=%1*         "Set color for nav section
 "set statusline+=%4c:         "cursor column
 "set statusline+=%4l/%L     "line/total lines
 set statusline+=%14(%c:%3l/%L%)     "cursor line/total lines
 set statusline+=\ %P        "percent through file
-set statusline+=%*
+set statusline+=%*          "End nav section color
 set laststatus=2
 
 "recalculate the trailing whitespace warning when idle, and after saving
@@ -273,3 +277,21 @@ endfunction
 "set statusline=%3*[%1*%02n%3*]%*\ %1*%F%*\ %2*%(%4*%m%2*%r%h%w%y%)%*\ %=%3*[%1*%{strftime(\"%Y-%m-%d\ %H:%M\")}%3*]%*\ %15(%3*<%1*%c%V,%l%3*/%1*%L%3*>%)%*
 " We only want the statusline when we have more than one window.
 "set laststatus=2 " or set to 2 to show always!
+
+function! GitBranchInfoFindDir()
+    let l:bufname   = getcwd()."/".expand("%:t")
+    :echo "_" . l:bufname . "_"
+    let l:buflist   = strlen(l:bufname)>0 ? split(l:bufname,"/") : [""]
+    let l:prefix    = l:bufname =~ "^/" ? "/" : ""
+    let b:gbi_git_dir   = ""
+    while len(l:buflist) > 0
+        let l:path = l:prefix.join(l:buflist,"/").l:prefix.".git"
+        if !empty(finddir(l:path))
+            let b:gbi_git_dir = l:path
+            break
+        endif
+        call remove(l:buflist,-1)
+    endwhile
+    ":echo "[" . b:gbi_git_dir . "]"
+    return b:gbi_git_dir
+endfunction
