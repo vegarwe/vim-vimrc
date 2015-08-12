@@ -10,13 +10,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vegarwe/vim-statusline'
+Plugin 'vegarwe/vim-sensible'
+Plugin 'terryma/vim-expand-region'
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-rsi.git'
-Plugin 'vegarwe/vim-sensible'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'kien/ctrlp.vim'
-Plugin 'terryma/vim-expand-region'
-Plugin 'vegarwe/vim-statusline'
+"Plugin 'kien/ctrlp.vim'
 "Plugin 'bling/vim-airline'
 "Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -45,7 +45,6 @@ endif
 
 " ========== <key bindings> ==============
 let mapleader = "\<Enter>"
-nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>g :!git<Space>
 vmap    v  <Plug>(expand_region_expand)
