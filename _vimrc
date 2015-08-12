@@ -17,7 +17,7 @@ Plugin 'vegarwe/vim-sensible'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-expand-region'
-Plugin 'file:///home/vegarwe/devel/statusline/'
+Plugin 'vegarwe/vim-statusline'
 "Plugin 'bling/vim-airline'
 "Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Plugin 'git://git.wincent.com/command-t.git'
