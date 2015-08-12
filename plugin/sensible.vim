@@ -24,10 +24,12 @@ set smarttab
 
 set nrformats-=octal
 
-set ttimeout
+set timeout                 " allow keys to timeout
+"set ttimeout
 set ttimeoutlen=100
+set  timeoutlen=100
 
-""set smartindent             " Always set auto-indenting on (smartindent is deprecated)
+""set smartindent             " (smartindent is deprecated)
 set background=dark                 " gir ugly ugly farger, men men
 "set clipboard+=unnamed      " put yanks/etc on the clipboard
 "set errorbells              " beep/flash on errors, vil vi ha det da ???
@@ -36,29 +38,25 @@ set expandtab
 "set foldlevelstart=99       " start with all folds open
 "set foldopen-=search        " don't open folds when you search into them
 "set foldopen-=undo          " don't open folds when you undo stuff
-"set history=1000            " keep 50 lines of command history
 "set hidden                  " lukker ikke ei fil i et buffer når du forlater den ('abandon')
 set hlsearch                " highlighter siste søk, kjekt....
 "set incsearch              " noen syntes dette er nice, jeg synes ikke det :P
 set nowrap                  " vi liker da ikke wrap'ing... bare dritt
 set number                  " for å få linjenumrering... litt slitsomt i starten
 set nowarn
-"set suffixes+=.class,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-"set showmatch               " vise fold'a kode eller noe... ???
+set suffixes+=.class,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,,
+"set showmatch               " Hopp kort til matchende block tegn ved avslutning )]}
 "set smartcase               " lurt når man driver å søker...
-"set shortmess+=at           " shortens messages to avoid 'press a key' prompt
+set shortmess+=at           " shortens messages to avoid 'press a key' prompt
 set splitbelow
 set splitright
 set softtabstop=4
 set shiftwidth=4            " two spaces per sw
 set tabstop=4               " The One True Tab
-""set textwidth=79           " set normal border; can unset for coding
-"set timeout                 " allow keys to timeout
-"set timeoutlen=3000         " timeout after 3s
-""set viminfo='20,\"50       " read/write a .viminfo file -- limit to only 50
-set wildmode=list:longest   " (file-listing when opening a new file)
-"set mouse=""                " OOOOOOOOOOOOOOOO, linjenummer blir ikke med når jeg higlighter!!!
-"set cinkeys-=:
+set textwidth=120          " set normal border; can unset for coding
+set wildmode=longest,list,full   " (file-listing when opening a new file)
+set mouse=v                  " mouse i visual mode, kan være kjekt
+set cinkeys-=:
 "set formatoptions+=ro       " See :help fo-table
 
 set colorcolumn=100
