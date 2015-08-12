@@ -11,8 +11,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'vegarwe/vim-statusline'
-Plugin 'vegarwe/vim-sensible'
 Plugin 'terryma/vim-expand-region'
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-rsi.git'
@@ -20,6 +18,8 @@ Plugin 'terryma/vim-expand-region'
 "Plugin 'bling/vim-airline'
 "Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'vegarwe/vim-sensible'
+Plugin 'vegarwe/vim-statusline'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -114,15 +114,6 @@ let g:ycm_auto_trigger = 0
 autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
-
-" litt usikker på denne også, men det kan se ut til at
-" vi slipper disse tegnene (^[4%dm,^[3%dm) og det er bra
-if &term=="xterm"
-  set t_RV=          " don't check terminal version
-  set t_Co=8
-  set t_Sb=^[4%dm
-  set t_Sf=^[3%dm
-endif
 
 " ========== <Mutt> ==============
 "function! FormatMail()
