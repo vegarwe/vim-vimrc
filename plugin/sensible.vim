@@ -112,6 +112,15 @@ set sessionoptions-=options
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
+" litt usikker på denne også, men det kan se ut til at
+" vi slipper disse tegnene (^[4%dm,^[3%dm) og det er bra
+"if &term=="xterm"
+"  set t_RV=          " don't check terminal version
+"  set t_Co=8
+"  set t_Sb=^[4%dm
+"  set t_Sf=^[3%dm
+"endif
+
 
 " Highlight end of line white space
 highlight WhitespaceEOL ctermbg=red guibg=red
