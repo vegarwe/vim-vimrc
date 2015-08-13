@@ -10,3 +10,6 @@
 [submodule "bundle/vim-statusline"]
 	path = bundle/vim-statusline
 	url = git@github.com:vegarwe/vim-statusline.git
+[submodule "bundle/vim-expand-region"]
+	path = bundle/vim-expand-region
+	url = https://github.com/terryma/vim-expand-region.git
