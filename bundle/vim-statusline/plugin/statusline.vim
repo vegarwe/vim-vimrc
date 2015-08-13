@@ -23,7 +23,7 @@ set statusline+=%{fugitive#statusline()}
 set statusline+=\ %*                  "End color for window section
 
 set statusline+=%2*                 "Set color for filename section
-set statusline+=\ %<%F              "full file name
+set statusline+=\ %<%f              "full file name
 "set statusline+=\ %<%f              "tail of the filename
 set statusline+=%=                  "left/right separator
 set statusline+=%*                  "End file name section color
@@ -32,7 +32,7 @@ set statusline+=%3*                 "Set color for info section
 set statusline+=%r                  "read only flag
 set statusline+=%m                  "modified flag
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
+"set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
 set statusline+=%*                  "End color for window section
 
 set statusline+=%4*\                " Set color for warning section
