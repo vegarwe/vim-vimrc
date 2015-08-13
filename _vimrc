@@ -4,8 +4,6 @@
 
 execute pathogen#infect()
 
-filetype plugin indent on
-
 let osys=system('uname -s')
 let vimdir=$HOME . '/.vim/'
 let &viminfo="'20," . '%,n' . vimdir . 'viminfo'
@@ -23,6 +21,7 @@ endif
 let mapleader = "\<Enter>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>g :Git<Space>
+nnoremap <silent> <Leader>cc :call g:ToggleSelectMode()<CR>
 vmap    v  <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
@@ -49,6 +48,19 @@ nnoremap q: :q
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
+" Make it possible to select text with the mouse (for copying)
+function! g:ToggleSelectMode()
+  if &colorcolumn != ''
+    setlocal colorcolumn&
+    set wrap
+    set nonumber
+  else
+    setlocal colorcolumn=100
+    set nowrap
+    set number
+  endif
+endfunction
 " ========== </key bindings> =============
 
 " If we have a saved position in the file, go there.
@@ -117,20 +129,4 @@ autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('
 "au BufRead mutt-* call FormatMail()
 "au BufNewFile,BufRead mutt*    set tw=77 ai nocindent fileencoding=utf-8
 " ========== </Mutt> ==============
-
-" ========== <Copy-paste-mode> ==============
-" Make it possible to select text with the mouse (for copying)
-function! g:ToggleSelectMode()
-  if &colorcolumn != ''
-    setlocal colorcolumn&
-    set wrap
-    set nonumber
-  else
-    setlocal colorcolumn=100
-    set nowrap
-    set number
-  endif
-endfunction
-nnoremap <silent> <leader>cc :call g:ToggleSelectMode()<CR>
-" ========== </Copy-paste-mode> ==============
 
