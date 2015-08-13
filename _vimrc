@@ -66,15 +66,10 @@ endfunction
 " ========== </key bindings> =============
 
 " If we have a saved position in the file, go there.
-"autocmd BufReadPost *
-"            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"            \   exe "normal g`\"" |
-"            \ endif
-"jump to last cursor position when opening a file
 "dont do it when writing a commit log entry
 autocmd BufReadPost * call SetCursorPosition()
 function! SetCursorPosition()
-    if &filetype !~ 'svn\|commit\c'
+    if &filetype !~ 'svn\|commit|gitcommit\c'
         if line("'\"") > 0 && line("'\"") <= line("$")
             exe "normal! g`\""
             normal! zz
@@ -92,15 +87,10 @@ autocmd filetype svn,*commit* setlocal spell
 "        \ endif
 
 " Pr file type changes
-"au BufNewFile,BufRead *py      set et sw=4
+"au BufNewFile,BufRead *py           set et sw=4
+au BufNewFile,BufRead *cpp,*java    set tw=120
 
 " ========== <Latex> ==============
-" Disable autoloading of vimspell
-"let loaded_vimspell = 1
-"let spell_insert_mode = 0
-"let spell_auto_type = "tex,mail"
-"let spell_language_list = "norsk,english"
-
 " Autocompile tex files on write
 " au BufRead,BufNewFile *.tex map :w<CR> :w<CR>:!pdflatex %<CR>
 
