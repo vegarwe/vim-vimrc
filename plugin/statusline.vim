@@ -13,7 +13,10 @@ hi User5 ctermbg=Grey       ctermfg=Red   guibg=Grey       guifg=Red
 "set statusline=%f                   "tail of the filename
 set statusline=                     "clear status line
 "set statusline+=\"%{v:register}\          "active register
-set statusline+=%1*\ %n\ %*         "buffer number
+set statusline+=%1*%<               "Set color (and overflow behaviour) for window section
+set statusline+=\ %n\               "buffer number
+set statusline+=%{fugitive#statusline()}
+set statusline+=%*                  "End color for window section
 "set statusline+=%F\                 "full file name
 set statusline+=%2*                 "Set color for filename section
 set statusline+=\ %<%F              "relative path
@@ -33,7 +36,6 @@ set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
 
 set statusline+=%{StatuslineLongLineWarning()}      " lone lines
 
-"set statusline+=%{fugitive#statusline()}
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=--%{GitBranchInfoFindDir()}--
 
@@ -268,21 +270,3 @@ endfunction
 "set statusline=%3*[%1*%02n%3*]%*\ %1*%F%*\ %2*%(%4*%m%2*%r%h%w%y%)%*\ %=%3*[%1*%{strftime(\"%Y-%m-%d\ %H:%M\")}%3*]%*\ %15(%3*<%1*%c%V,%l%3*/%1*%L%3*>%)%*
 " We only want the statusline when we have more than one window.
 "set laststatus=2 " or set to 2 to show always!
-
-function! GitBranchInfoFindDir()
-    let l:bufname   = getcwd()."/".expand("%:t")
-    :echo "_" . l:bufname . "_"
-    let l:buflist   = strlen(l:bufname)>0 ? split(l:bufname,"/") : [""]
-    let l:prefix    = l:bufname =~ "^/" ? "/" : ""
-    let b:gbi_git_dir   = ""
-    while len(l:buflist) > 0
-        let l:path = l:prefix.join(l:buflist,"/").l:prefix.".git"
-        if !empty(finddir(l:path))
-            let b:gbi_git_dir = l:path
-            break
-        endif
-        call remove(l:buflist,-1)
-    endwhile
-    ":echo "[" . b:gbi_git_dir . "]"
-    return b:gbi_git_dir
-endfunction
