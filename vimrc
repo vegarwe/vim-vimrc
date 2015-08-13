@@ -121,6 +121,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " ========== </Syntastic> =============
 
+" ========== <NERDTree> ==============
+let g:NERDTreeMouseMode = 2
+let g:NERDTreeWinSize = 40
+" ========== </NERDTree> =============
+
 " ========== <Mutt> ==============
 "function! FormatMail()
 "    " Fjern signatur
