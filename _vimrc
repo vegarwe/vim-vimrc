@@ -14,7 +14,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-rsi.git'
-"Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 "Plugin 'bling/vim-airline'
 "Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -46,7 +46,7 @@ endif
 " ========== <key bindings> ==============
 let mapleader = "\<Enter>"
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>g :!git<Space>
+nnoremap <Leader>g :Git<Space>
 vmap    v  <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
