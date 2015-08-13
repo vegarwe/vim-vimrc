@@ -24,10 +24,11 @@ let mapleader = "\<Enter>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>g :Git<Space>
 nnoremap <silent> <Leader>cc :call g:ToggleSelectMode()<CR>
+
 vmap    v  <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-nnoremap <xF1> <nop>
+nnoremap <xF1> :NERDTreeToggle<CR>
 inoremap <xF1> <nop>
 nnoremap <silent> <F2> :call g:ToggleSelectMode()<CR>
 set pastetoggle=<F3>
@@ -50,6 +51,10 @@ nnoremap q: :q
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
+"make <c-l> clear the highlight as well as redraw
+nnoremap <C-L>      :nohls<CR><C-L>
+inoremap <C-L> <C-O>:nohls<CR>
 
 " Make it possible to select text with the mouse (for copying)
 function! g:ToggleSelectMode()
@@ -101,12 +106,12 @@ au BufNewFile,BufRead *cpp,*java    set tw=120
 " ========== </Latex> =============
 
 " ========== <YouCompleteMe> ==============
-let g:ycm_confirm_extra_conf = 0
-"let g:airline#extensions#loclist#enabled = 1
-let g:ycm_always_populate_location_list = 1
-let g:ycm_auto_trigger = 0
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+"let g:ycm_confirm_extra_conf = 0
+""let g:airline#extensions#loclist#enabled = 1
+"let g:ycm_always_populate_location_list = 1
+"let g:ycm_auto_trigger = 0
+"autocmd BufEnter * sign define dummy
+"autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
 
 " ========== <Mutt> ==============
@@ -136,3 +141,6 @@ autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('
 "au BufNewFile,BufRead mutt*    set tw=77 ai nocindent fileencoding=utf-8
 " ========== </Mutt> ==============
 
+if filereadable(".vimrc.custom")
+    source .vimrc.custom
+endif
