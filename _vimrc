@@ -12,7 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'terryma/vim-expand-region'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-rsi.git'
 "Plugin 'kien/ctrlp.vim'
 "Plugin 'bling/vim-airline'
