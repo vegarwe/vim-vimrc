@@ -1,6 +1,8 @@
-" Modda av meg sjæl våren 2004 - brukt alfborge's som samt gentoo's som grunnlag
+" Modda av meg sjÃ¦l vÃ¥ren 2004 - brukt alfborge's som samt gentoo's som grunnlag
 " update Tue Jun  8 13:10:28 CEST 2004 --> lagt til F5 som nohlsearch
 " $Id: .vimrc,v 1.9 2010/07/08 11:43:20 vegarwe Exp $
+
+set nocompatible
 
 execute pathogen#infect()
 
@@ -64,10 +66,24 @@ endfunction
 " ========== </key bindings> =============
 
 " If we have a saved position in the file, go there.
-autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
+"autocmd BufReadPost *
+"            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"            \   exe "normal g`\"" |
+"            \ endif
+"jump to last cursor position when opening a file
+"dont do it when writing a commit log entry
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+    if &filetype !~ 'svn\|commit\c'
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+            normal! zz
+        endif
+    end
+endfunction
+
+"spell check when writing commit logs
+autocmd filetype svn,*commit* setlocal spell
 
 " Change directory to the directory of the file I'm working on.
 "autocmd BufEnter *
