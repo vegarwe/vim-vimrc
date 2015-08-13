@@ -114,6 +114,13 @@ au BufNewFile,BufRead *cpp,*java    set tw=120
 "autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
 
+" ========== <Syntastic> ==============
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" ========== </Syntastic> =============
+
 " ========== <Mutt> ==============
 "function! FormatMail()
 "    " Fjern signatur
