@@ -45,7 +45,6 @@ set nowrap                  " vi liker da ikke wrap'ing... bare dritt
 set number                  " for å få linjenumrering... litt slitsomt i starten
 set nowarn
 set suffixes+=.class,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,,
-"set showmatch               " Hopp kort til matchende block tegn ved avslutning )]}
 "set smartcase               " lurt når man driver å søker...
 set shortmess+=at           " shortens messages to avoid 'press a key' prompt
 set splitbelow
@@ -57,21 +56,24 @@ set textwidth=120          " set normal border; can unset for coding
 set wildmode=longest,list,full   " (file-listing when opening a new file)
 set mouse=v                  " mouse i visual mode, kan være kjekt
 set cinkeys-=:
-"set formatoptions+=ro       " See :help fo-table
+set formatoptions-=o       " See :help fo-table
 
 set colorcolumn=100
 
 set laststatus=2
 set ruler
 set showcmd
+"set showmatch               " Hopp kort til matchende block tegn ved avslutning )]}
+set showmode                "show current mode down at the bottom
 set wildmenu
 
 if !&scrolloff
-  set scrolloff=1
+  set scrolloff=3
 endif
 if !&sidescrolloff
-  set sidescrolloff=5
+  set sidescrolloff=7
 endif
+set sidescroll=1
 set display+=lastline
 
 if &encoding ==# 'latin1' && has('gui_running')
@@ -110,7 +112,9 @@ set sessionoptions-=options
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
-  set t_Co=16
+  set t_Co=256
+  "set t_AB=<Esc>[48;5;%dm
+  "set t_AF=<Esc>[38;5;%dm
 endif
 " litt usikker på denne også, men det kan se ut til at
 " vi slipper disse tegnene (^[4%dm,^[3%dm) og det er bra
