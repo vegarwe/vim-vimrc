@@ -10,71 +10,58 @@
 hi User1 ctermbg=190        ctermfg=Black
 hi User2 ctermbg=234        ctermfg=121
 hi User3 ctermbg=234        ctermfg=White
-hi User4 ctermbg=130        ctermfg=Black
-hi User5 ctermbg=130        ctermfg=Red
-hi User6 ctermbg=241        ctermfg=White
-hi User7 ctermbg=241        ctermfg=Red
+hi User4 ctermbg=234        ctermfg=Red
+hi User5 ctermbg=130        ctermfg=Black
+hi User6 ctermbg=130        ctermfg=Red
 
 "statusline setup
-"set statusline=%f                   "tail of the filename
 set statusline=                     "clear status line
-"set statusline+=\"%{v:register}\          "active register
 set statusline+=%1*%<               "Set color (and overflow behaviour) for window section
+"set statusline+=\"%{v:register}\          "active register
 set statusline+=\ %n\               "buffer number
 set statusline+=%{fugitive#statusline()}
-set statusline+=%*                  "End color for window section
-"set statusline+=%F\                 "full file name
-set statusline+=%2*                 "Set color for filename section
-set statusline+=\ %<%F              "relative path
-set statusline+=%3*                 "Set color for file flags
-set statusline+=%r                  "read only flag
-set statusline+=%m                  "modified flag
+set statusline+=\ %*                  "End color for window section
 
-"display a warning if &paste is set
-set statusline+=%{&paste?'[paste]':''}
 set statusline+=%2*                 "Set color for filename section
-
+set statusline+=\ %<%F              "full file name
+"set statusline+=\ %<%f              "tail of the filename
 set statusline+=%=                  "left/right separator
 set statusline+=%*                  "End file name section color
-set statusline+=%4*                 "Set color for info section
 
+set statusline+=%3*                 "Set color for info section
+set statusline+=%r                  "read only flag
+set statusline+=%m                  "modified flag
+set statusline+=%{&paste?'[paste]':''}
 set statusline+=%{StatuslineCurrentHighlight()}     " current highlight
+set statusline+=%*                  "End color for window section
 
-set statusline+=%{StatuslineLongLineWarning()}      " lone lines
-
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=--%{GitBranchInfoFindDir()}--
-
-"Look for errors in loclist
-set statusline+=%5*
-set statusline+=%{Get_errors()}
-set statusline+=%4*
-
-"display a warning if &et is wrong, or we have mixed-indenting
-"set statusline+=%#error#
+set statusline+=%4*\                " Set color for warning section
+set statusline+=%{StatuslineLongLineWarning()}      " long lines
+set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{Get_errors()}     "Look for errors in loclist
 set statusline+=%{StatuslineTabWarning()}
 set statusline+=%{StatuslineTrailingSpaceWarning()}
-"set statusline+=%*
+set statusline+=\ %*
 
-set statusline+=%6*
+set statusline+=%5*\              "Set color for
 set statusline+=%h                  "help file flag
 set statusline+=%y                  "filetype
 
 "display a warning if fileformat isnt unix and encoding isnt utf-8
 set statusline+=[
-set statusline+=%7*
-set statusline+=%{RenderStlFlag(&ff,'unix',1)}
 set statusline+=%6*
+set statusline+=%{RenderStlFlag(&ff,'unix',1)}
+set statusline+=%5*
 set statusline+=%{RenderStlFlag(&ff,'unix',0)}
 set statusline+=,
-set statusline+=%7*
-set statusline+=%{RenderStlFlag(&fenc,'utf-8',1)}
 set statusline+=%6*
+set statusline+=%{RenderStlFlag(&fenc,'utf-8',1)}
+set statusline+=%5*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',0)}
 set statusline+=]
 
 set statusline+=[%{FileSize()}]     " Show file size
-set statusline+=%*
+set statusline+=\ %*
 
 "set statusline+=%2*0x%04B\ %*          "character under cursor
 set statusline+=%1*                 "Set color for nav section

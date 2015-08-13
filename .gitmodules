@@ -16,3 +16,6 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-rsi"]
+	path = bundle/vim-rsi
+	url = git@github.com:tpope/vim-rsi.git
