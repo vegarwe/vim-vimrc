@@ -52,13 +52,13 @@ set splitright
 set softtabstop=4
 set shiftwidth=4            " two spaces per sw
 set tabstop=4               " The One True Tab
-set textwidth=120          " set normal border; can unset for coding
+"set textwidth=120          " set normal border; can unset for coding
 set wildmode=longest,list,full   " (file-listing when opening a new file)
 set mouse=v                  " mouse i visual mode, kan være kjekt
 set cinkeys-=:
 set formatoptions-=o       " See :help fo-table
 
-set colorcolumn=100
+set colorcolumn=+1
 
 set laststatus=2
 set ruler
