@@ -2,12 +2,17 @@
 " DarkBlue         Blue            DarkMagenta      Magenta
 " DarkGreen        Green           DarkYellow       Yellow
 " DarkCyan         Cyan
+" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" cterm=underline cterm=bold
+" :hightlight for examples
 
-hi User1 ctermbg=DarkYellow ctermfg=Black guibg=DarkYellow guifg=Black
-hi User2 ctermbg=DarkGray   ctermfg=Green guibg=DarkGray   guifg=SeaGreen cterm=bold term=bold
-hi User3 ctermbg=DarkGray   ctermfg=White guibg=DarkGray   guifg=White
-hi User4 ctermbg=Grey       ctermfg=Black guibg=Grey       guifg=Black
-hi User5 ctermbg=Grey       ctermfg=Red   guibg=Grey       guifg=Red
+hi User1 ctermbg=190        ctermfg=Black
+hi User2 ctermbg=234        ctermfg=121
+hi User3 ctermbg=234        ctermfg=White
+hi User4 ctermbg=130        ctermfg=Black
+hi User5 ctermbg=130        ctermfg=Red
+hi User6 ctermbg=241        ctermfg=White
+hi User7 ctermbg=241        ctermfg=Red
 
 "statusline setup
 "set statusline=%f                   "tail of the filename
@@ -50,23 +55,25 @@ set statusline+=%{StatuslineTabWarning()}
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 "set statusline+=%*
 
+set statusline+=%6*
 set statusline+=%h                  "help file flag
 set statusline+=%y                  "filetype
 
 "display a warning if fileformat isnt unix and encoding isnt utf-8
 set statusline+=[
-set statusline+=%5*
+set statusline+=%7*
 set statusline+=%{RenderStlFlag(&ff,'unix',1)}
-set statusline+=%4*
+set statusline+=%6*
 set statusline+=%{RenderStlFlag(&ff,'unix',0)}
 set statusline+=,
-set statusline+=%5*
+set statusline+=%7*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',1)}
-set statusline+=%4*
+set statusline+=%6*
 set statusline+=%{RenderStlFlag(&fenc,'utf-8',0)}
 set statusline+=]
 
 set statusline+=[%{FileSize()}]     " Show file size
+set statusline+=%*
 
 "set statusline+=%2*0x%04B\ %*          "character under cursor
 set statusline+=%1*                 "Set color for nav section
