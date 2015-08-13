@@ -4,12 +4,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "bundle/vim-sensible"]
-	path = bundle/vim-sensible
-	url = git@github.com:vegarwe/vim-sensible.git
-[submodule "bundle/vim-statusline"]
-	path = bundle/vim-statusline
-	url = git@github.com:vegarwe/vim-statusline.git
 [submodule "bundle/vim-expand-region"]
 	path = bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region.git
