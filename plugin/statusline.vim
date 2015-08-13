@@ -3,7 +3,8 @@
 " DarkGreen        Green           DarkYellow       Yellow
 " DarkCyan         Cyan
 " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-" cterm=underline cterm=bold
+"
+" cterm= underline, reverse, italic none
 " :hightlight for examples
 
 hi User1 ctermbg=190        ctermfg=Black
