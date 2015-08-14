@@ -92,7 +92,7 @@ autocmd filetype svn,*commit* setlocal spell
 "        \ endif
 
 " Pr file type changes
-"au BufNewFile,BufRead *py           set et sw=4
+au BufNewFile,BufRead *py           set tw=120
 au BufNewFile,BufRead *cpp,*java    set tw=120
 
 " ========== <Latex> ==============
@@ -116,9 +116,11 @@ au BufNewFile,BufRead *cpp,*java    set tw=120
 
 " ========== <Syntastic> ==============
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+autocmd BufEnter * sign define dummy
+autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </Syntastic> =============
 
 " ========== <NERDTree> ==============
