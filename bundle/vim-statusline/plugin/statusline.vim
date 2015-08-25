@@ -121,7 +121,7 @@ function! StatuslineTabWarning()
             return b:statusline_tab_warning
         endif
 
-        let tabs = search('^\t', 'nw') != 0
+        let tabs = search('\t', 'nw') != 0
 
         "find spaces that arent used as alignment in the first indent column
         let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
@@ -130,6 +130,8 @@ function! StatuslineTabWarning()
             let b:statusline_tab_warning =  '[mixed-indenting]'
         elseif (spaces && !&et) || (tabs && &et)
             let b:statusline_tab_warning = '[&et]'
+        "else
+        "    let b:statusline_tab_warning = 'o' . tabs . 'n' . spaces . 'p'
         endif
     endif
     return b:statusline_tab_warning
@@ -255,8 +257,8 @@ function! Get_ycm_loc_errors()
         "let res .= 'E: ' . errors
     endif
     if warns > 0
-        "let res .= 'W: ' . warns . warn_line . ' '
-        let res .= ' W: ' . warns
+        let res .= 'W: ' . warns . warn_line . ' '
+        "let res .= ' W: ' . warns
     endif
     if len(res) > 0
         return '[' . res . ']'
