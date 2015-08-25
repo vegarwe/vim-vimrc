@@ -37,8 +37,12 @@ set statusline+=%*                  "End color for window section
 
 set statusline+=%4*\                " Set color for warning section
 set statusline+=%{StatuslineLongLineWarning()}      " long lines
-set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%{Get_errors()}     "Look for errors in loclist
+if exists('g:loaded_syntastic_plugin')
+    set statusline+=%{SyntasticStatuslineFlag()}
+endif
+if exists( "g:loaded_youcompleteme" )
+    set statusline+=%{Get_ycm_loc_errors()}     "Look for errors in loclist
+endif
 set statusline+=%{StatuslineTabWarning()}
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 set statusline+=\ %*
@@ -225,7 +229,7 @@ function! FileSize()
     endif
 endfunction
 
-function! Get_errors()
+function! Get_ycm_loc_errors()
     let l = getloclist(0)
     let errors = 0
     let warns = 0
