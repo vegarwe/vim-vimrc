@@ -106,12 +106,15 @@ au BufNewFile,BufRead *cpp,*java    set tw=120
 " ========== </Latex> =============
 
 " ========== <YouCompleteMe> ==============
-"let g:ycm_confirm_extra_conf = 0
-""let g:airline#extensions#loclist#enabled = 1
-"let g:ycm_always_populate_location_list = 1
-"let g:ycm_auto_trigger = 0
-"autocmd BufEnter * sign define dummy
-"autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+let g:ycm_confirm_extra_conf = 0
+"let g:airline#extensions#loclist#enabled = 1
+let g:ycm_allow_changing_updatetime = 0
+set updatetime=200
+let g:ycm_always_populate_location_list = 1
+let g:ycm_auto_trigger = 0
+let g:EclimCompletionMethod = 'omnifunc'
+autocmd BufEnter * sign define dummy
+autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
 
 " ========== <Syntastic> ==============
