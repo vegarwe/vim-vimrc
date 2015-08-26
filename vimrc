@@ -62,10 +62,12 @@ function! g:ToggleSelectMode()
     setlocal colorcolumn&
     set wrap
     set nonumber
+    execute 'sign unplace * buffer=' . bufnr('')
   else
     setlocal colorcolumn=100
     set nowrap
     set number
+    execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
   endif
 endfunction
 " ========== </key bindings> =============
@@ -118,12 +120,12 @@ autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('
 " ========== </YouCompleteMe> =============
 
 " ========== <Syntastic> ==============
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"autocmd BufEnter * sign define dummy
+"autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </Syntastic> =============
 
 " ========== <NERDTree> ==============
