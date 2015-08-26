@@ -9,6 +9,6 @@ personal, not recommended for wide use...
   - ln -s ~/.vim/\_vimrc ~/.vimrc
 - Install all plugins
   - vim ~/.vimrc
-  - :PluginInstall
-  - Possibly compile YouCompleteMe (if your still using it)
+  - Compile YouCompleteMe
+  - Install eclim
 - Done or something
