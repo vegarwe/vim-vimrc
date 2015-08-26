@@ -2,7 +2,7 @@
 " update Tue Jun  8 13:10:28 CEST 2004 --> lagt til F5 som nohlsearch
 " $Id: .vimrc,v 1.9 2010/07/08 11:43:20 vegarwe Exp $
 
-" ========== <startup> ==============
+" Startup {{{
 set nocompatible
 
 execute pathogen#infect()
@@ -26,9 +26,9 @@ endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
-" ========== </startup> ==============
+" }}} Startup
 
-" ========== <set variables> ==============
+" Set variables {{{
 " Use :help 'option' to see the documentation for the given option.
 set autoindent
 set backspace=indent,eol,start
@@ -122,9 +122,9 @@ if !empty(&viminfo)
   set viminfo^=!
 endif
 set sessionoptions-=options
-" ========== </set variables> ==============
+" }}} Set variables
 
-" ========== <key bindings> ==============
+" Key bindings {{{
 let mapleader = "\<Enter>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>g :Git<Space>
@@ -177,9 +177,9 @@ function! g:ToggleSelectMode()
     execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
   endif
 endfunction
-" ========== </key bindings> =============
+" }}} Key bindings
 
-" ========== <terminal> ==============
+" Terminal {{{
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=256
@@ -194,8 +194,9 @@ endif
 "  set t_Sb=^[4%dm
 "  set t_Sf=^[3%dm
 "endif
-" ========== </terminal> ==============
+" }}} Terminal
 
+" Buffer auto commands {{{
 " Highlight end of line white space
 highlight WhitespaceEOL ctermbg=red guibg=red
 "match WhitespaceEOL /\s\+$\| \+\ze\t/
@@ -225,7 +226,9 @@ autocmd filetype svn,*commit* setlocal spell
 " Pr file type changes
 au BufNewFile,BufRead *py           set tw=120
 au BufNewFile,BufRead *cpp,*java    set tw=120
+" }}} Buffer auto commands
 
+" Plugins {{{
 " ========== <Latex> ==============
 " Autocompile tex files on write
 " au BufRead,BufNewFile *.tex map :w<CR> :w<CR>:!pdflatex %<CR>
@@ -293,8 +296,11 @@ let g:NERDTreeWinSize = 40
 "au BufRead mutt-* call FormatMail()
 "au BufNewFile,BufRead mutt*    set tw=77 ai nocindent fileencoding=utf-8
 " ========== </Mutt> ==============
+" }}} Plugins
 
 if filereadable(".vimrc.custom")
     source .vimrc.custom
 endif
 
+" vim:fdm=marker
+" zR to open all folds
