@@ -80,6 +80,10 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
 function! StatuslineTrailingSpaceWarning()
+    if FileIsBig() " Do not try to process big files...
+        return ''
+    endif
+
     if !exists("b:statusline_trailing_space_warning")
 
         if !&modifiable
@@ -114,6 +118,10 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
 "return '[mixed-indenting]' if spaces and tabs are used to indent
 "return an empty string if everything is fine
 function! StatuslineTabWarning()
+    if FileIsBig() " Do not try to process big files...
+        return ''
+    endif
+
     if !exists("b:statusline_tab_warning")
         let b:statusline_tab_warning = ''
 
@@ -148,6 +156,10 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 "lines, y is the median length of the long lines and z is the length of the
 "longest line
 function! StatuslineLongLineWarning()
+    if FileIsBig() " Do not try to process big files...
+        return ''
+    endif
+
     if !exists("b:statusline_long_line_warning")
 
         if !&modifiable
@@ -228,6 +240,13 @@ function! FileSize()
         return bytes
     else
         return (bytes / 1024) . "K"
+    endif
+endfunction
+
+function! FileIsBig()
+    let bytes = getfsize(expand("%:p"))
+    if bytes > (300 * 1024) " 300k source file is big....
+        return 1
     endif
 endfunction
 
