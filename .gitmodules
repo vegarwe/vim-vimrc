@@ -1,5 +1,5 @@
 [submodule "autoload/vim-pathogen"]
-	path = vim-pathogen.not_autoloading
+	path = autoload/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
