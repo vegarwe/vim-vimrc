@@ -15,9 +15,9 @@ set backup                  " Keep a backup file
 
 if osys =~ "SunOS"
     set term=xtermc
-    colorscheme desert
+    "colorscheme desert
 elseif osys =~ "Linux"
-    colorscheme elflord
+    "colorscheme elflord
 endif
 
 if has('autocmd')
@@ -43,9 +43,10 @@ set ttimeoutlen=100
 set  timeoutlen=100
 
 ""set smartindent             " (smartindent is deprecated)
-set background=dark                 " gir ugly ugly farger, men men
+set background=dark         " gir ugly ugly farger, men men
 set clipboard+=unnamed      " put yanks/etc on the clipboard
-"set errorbells              " beep/flash on errors, vil vi ha det da ???
+set noerrorbells            " beep/flash on errors, vil vi ha det da ??? Ehhh, nei takk
+set novisualbell            " Ikke blink, for faen!
 set expandtab
 "set foldmethod=marker
 "set foldlevelstart=99       " start with all folds open
@@ -53,7 +54,7 @@ set expandtab
 "set foldopen-=undo          " don't open folds when you undo stuff
 set hidden                  " lukker ikke ei fil i et buffer når du forlater den ('abandon')
 set hlsearch                " highlighter siste søk, kjekt....
-"set incsearch              " noen syntes dette er nice, jeg synes ikke det :P
+set noincsearch             " noen syntes dette er nice, jeg synes ikke det :P
 set nowrap                  " vi liker da ikke wrap'ing... bare dritt
 set number                  " for å få linjenumrering... litt slitsomt i starten
 set nowarn
@@ -149,6 +150,12 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <C-W><C-N> :vnew<CR>
 nnoremap <C-W>n     :vnew<CR>
 
+" Move easier between splits
+"nnoremap <A-J> <C-W><C-J>
+"nnoremap <A-K> <C-W><C-K>
+"nnoremap <A-L> <C-W><C-L>
+"nnoremap <A-H> <C-W><C-H>
+
 " Navigate with space and backspace! Really nice
 nmap <Space>        :tabnext<CR>
 nmap <BackSpace>    :tabprevious<CR>
@@ -226,6 +233,7 @@ autocmd filetype svn,*commit* setlocal spell
 " Pr file type changes
 au BufNewFile,BufRead *py           set tw=120
 au BufNewFile,BufRead *cpp,*java    set tw=120
+au BufNewFile,BufRead *ts           set sw=2 ts=2
 " }}} Buffer auto commands
 
 " Plugins {{{
@@ -269,6 +277,11 @@ autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
 " ========== </NERDTree> =============
+
+" ========== <CTRL-P> ================
+let g:ctrlp_clear_cache_on_exit = 0
+" ========== </CTRL-P> ===============
+
 
 " ========== <Mutt> ==============
 "function! FormatMail()
