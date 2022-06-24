@@ -5,8 +5,6 @@
 " Startup {{{
 set nocompatible
 
-execute pathogen#infect()
-
 let osys=system('uname -s')
 let vimdir=$HOME . '/.vim/'
 let &viminfo="'20," . '%,n' . vimdir . 'viminfo'
@@ -253,15 +251,15 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " ========== <YouCompleteMe> ==============
-let g:ycm_confirm_extra_conf = 0
-"let g:airline#extensions#loclist#enabled = 1
-let g:ycm_allow_changing_updatetime = 0
-set updatetime=200
-let g:ycm_always_populate_location_list = 1
-let g:ycm_auto_trigger = 0
-let g:EclimCompletionMethod = 'omnifunc'
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+"let g:ycm_confirm_extra_conf = 0
+""let g:airline#extensions#loclist#enabled = 1
+"let g:ycm_allow_changing_updatetime = 0
+"set updatetime=200
+"let g:ycm_always_populate_location_list = 1
+"let g:ycm_auto_trigger = 0
+"let g:EclimCompletionMethod = 'omnifunc'
+"autocmd BufEnter * sign define dummy
+"autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " ========== </YouCompleteMe> =============
 
 " ========== <Syntastic> ==============
