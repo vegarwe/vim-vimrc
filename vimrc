@@ -24,8 +24,7 @@ Plug 'tpope/vim-rsi'        "Read line key bindings in command shell
 "Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
-
-"vim-statusline
+Plug 'vim-scripts/vim-statusline-vegarwe'
 call plug#end()
 
 
@@ -296,6 +295,9 @@ let g:NERDTreeWinSize = 40
 let g:ctrlp_clear_cache_on_exit = 0
 " ========== </CTRL-P> ===============
 
+" ========== <airline> ==============
+let g:loaded_airline = 1
+" ========== </airline> =============
 
 " ========== <CoC> ===================
 " https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
