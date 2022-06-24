@@ -4,14 +4,12 @@ A cloneable all-in-on-folder .vimrc for easy setup on a new machine. Highly
 personal, not recommended for wide use...
 
 - Clone tree:
-  - git clone --recursive git@github.com:vegarwe/vim-vimrc.git ~/.vim
-  - Or, if already checked out:
-  - cd ~/.vimrc
-  - git submodule update --init --recursive
-- Symlink vimrc
-  - ln -s ~/.vim/\_vimrc ~/.vimrc
+  - git clone git@github.com:vegarwe/vim-vimrc.git ~/.vim
 - Install all plugins
-  - vim ~/.vimrc
-  - Compile YouCompleteMe
-  - Install eclim
+  - - choco
+  - - node
+  - - yarn
+  - :PlugInstall
+  - :CocInstall coc-clangd
+  - :CocCommand clangd.install
 - Done or something

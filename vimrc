@@ -11,24 +11,41 @@ let &viminfo="'20," . '%,n' . vimdir . 'viminfo'
 let &backupdir=vimdir . 'tmp'
 set backup                  " Keep a backup file
 
-if osys =~ "SunOS"
-    set term=xtermc
-    "colorscheme desert
-elseif osys =~ "Linux"
-    "colorscheme elflord
-endif
+" See README.md
+call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'jiangmiao/auto-pairs'
+Plug 'gruvbox-community/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-rsi'        "Read line key bindings in command shell
+"Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-fugitive'
+"Plug 'leafgarland/typescript-vim'
 
-if has('autocmd')
-  filetype plugin indent on
-endif
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
+"vim-statusline
+call plug#end()
+
+
+"if osys =~ "SunOS"
+"    set term=xtermc
+"    colorscheme desert
+"elseif osys =~ "Linux"
+"    colorscheme elflord
+"endif
+set termguicolors
+colorscheme gruvbox
+
+syntax on
+filetype plugin indent on
 " }}} Startup
 
 " Set variables {{{
 " Use :help 'option' to see the documentation for the given option.
 set autoindent
+""set smartindent             " (smartindent is deprecated)
 set backspace=indent,eol,start
 "set complete-=i " Why not scan includes?
 set smarttab
@@ -40,7 +57,6 @@ set timeout                 " allow keys to timeout
 set ttimeoutlen=100
 set  timeoutlen=100
 
-""set smartindent             " (smartindent is deprecated)
 set background=dark         " gir ugly ugly farger, men men
 set clipboard+=unnamed      " put yanks/etc on the clipboard
 set noerrorbells            " beep/flash on errors, vil vi ha det da ??? Ehhh, nei takk
@@ -133,14 +149,14 @@ vmap    v  <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 nnoremap <xF1> :NERDTreeToggle<CR>
-inoremap <xF1> <nop>
+inoremap <xF1> :NERDTreeToggle<CR>
 nnoremap <silent> <F2> :call g:ToggleSelectMode()<CR>
 set pastetoggle=<F3>
 nnoremap <silent> <F3> :set invpaste<CR>
 nnoremap <silent> <F4> :set invnumber<CR>
 nnoremap <F5> :ls<CR>:b
-nnoremap <F7> :!MSBuild.exe build.xml /t:Local
-nnoremap <F8> :!cygstart `find . -iname '*.uvproj'`
+"nnoremap <F7> :!MSBuild.exe build.xml /t:Local
+"nnoremap <F8> :!cygstart `find . -iname '*.uvproj'`
 
 inoremap <C-U> <C-G>u<C-U>
 
@@ -279,6 +295,21 @@ let g:NERDTreeWinSize = 40
 " ========== <CTRL-P> ================
 let g:ctrlp_clear_cache_on_exit = 0
 " ========== </CTRL-P> ===============
+
+
+" ========== <CoC> ===================
+" https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
+" use <tab> for trigger completion and navigate to the next complete item
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction
+"
+"inoremap <silent><expr> <Tab>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<Tab>" :
+"      \ coc#refresh()
+" ========== </CoC> ==================
 
 
 " ========== <Mutt> ==============
