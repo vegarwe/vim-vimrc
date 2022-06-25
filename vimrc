@@ -176,6 +176,9 @@ inoremap <C-U> <C-G>u<C-U>
 nmap <Space>        :tabnext<CR>
 nmap <BackSpace>    :tabprevious<CR>
 
+"nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :call CocAction('jumpDefinition', 'tabedit')<CR>
+
 " Have typed q: instead of :q too many times to count
 nnoremap q: :q
 
@@ -192,12 +195,14 @@ function! g:ToggleSelectMode()
     setlocal colorcolumn&
     set wrap
     set nonumber
-    execute 'sign unplace * buffer=' . bufnr('')
+    set norelativenumber
+    "execute 'sign unplace 9999 buffer=' . bufnr('')
   else
     setlocal colorcolumn=100
     set nowrap
     set number
-    execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+    set relativenumber
+    "execute 'sign place   9999 line=1 name='dummy' buffer=' . bufnr('')
   endif
 endfunction
 " }}} Key bindings
