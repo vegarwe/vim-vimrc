@@ -35,7 +35,7 @@ call plug#end()
 "    colorscheme elflord
 "endif
 set termguicolors
-colorscheme gruvbox
+"colorscheme gruvbox
 
 syntax on
 filetype plugin indent on
@@ -70,6 +70,7 @@ set hlsearch                " highlighter siste søk, kjekt....
 set noincsearch             " noen syntes dette er nice, jeg synes ikke det :P
 set nowrap                  " vi liker da ikke wrap'ing... bare dritt
 set number                  " for å få linjenumrering... litt slitsomt i starten
+set relativenumber          " Trying this out for size...
 set nowarn
 set suffixes+=.class,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,,
 "set smartcase               " lurt når man driver å søker...
@@ -302,15 +303,15 @@ let g:loaded_airline = 1
 " ========== <CoC> ===================
 " https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
 " use <tab> for trigger completion and navigate to the next complete item
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~ '\s'
-"endfunction
-"
-"inoremap <silent><expr> <Tab>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<Tab>" :
-"      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <C-Space>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 " ========== </CoC> ==================
 
 
