@@ -15,27 +15,25 @@ set backup                  " Keep a backup file
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jiangmiao/auto-pairs'
-Plug 'gruvbox-community/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-rsi'        "Read line key bindings in command shell
-"Plug 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
 Plug 'vim-scripts/vim-statusline-vegarwe'
+
+"colorschemes"
+"""""""""""""" See https://github.com/wolandark/wim
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'crusoexia/vim-monokai'
+Plug 'sainnhe/everforest'
+Plug 'gruvbox-community/gruvbox'
+Plug 'aonemd/kuroi.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-
-"if osys =~ "SunOS"
-"    set term=xtermc
-"    colorscheme desert
-"elseif osys =~ "Linux"
-"    colorscheme elflord
-"endif
-set termguicolors
-"colorscheme gruvbox
 
 syntax on
 filetype plugin indent on
@@ -60,6 +58,7 @@ set background=dark         " gir ugly ugly farger, men men
 set clipboard+=unnamed      " put yanks/etc on the clipboard
 set noerrorbells            " beep/flash on errors, vil vi ha det da ??? Ehhh, nei takk
 set novisualbell            " Ikke blink, for faen!
+set t_vb=
 set expandtab
 "set foldmethod=marker
 "set foldlevelstart=99       " start with all folds open
@@ -140,7 +139,8 @@ set sessionoptions-=options
 " }}} Set variables
 
 " Key bindings {{{
-let mapleader = "\<Enter>"
+"LEADER" (default is \)
+"let mapleader =" "          "leader key is space
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>g :Git<Space>
 nnoremap <silent> <Leader>cc :call g:ToggleSelectMode()<CR>
@@ -160,11 +160,13 @@ nnoremap <F5> :ls<CR>:b
 
 inoremap <C-U> <C-G>u<C-U>
 
-" split windows vertically, pleeeeease.
-nnoremap <C-W><C-N> :vnew<CR>
-nnoremap <C-W>n     :vnew<CR>
+" split windows vertically, pleeeeease. (no need, use <C-W>v or <C-W><C-V>...)
+"nnoremap <C-W><C-N> :vnew<CR>
+"nnoremap <C-W>n     :vnew<CR>
+"nmap     <C-W><C-N> :vnew<CR>
+"nmap     <C-W>n     :vnew<CR>
 
-" Move easier between splits
+" Move easier between splits (No thank you,,, cltr-l already has a purpose!)
 "nnoremap <A-J> <C-W><C-J>
 "nnoremap <A-K> <C-W><C-K>
 "nnoremap <A-L> <C-W><C-L>
@@ -215,6 +217,18 @@ endif
 "  set t_Sb=^[4%dm
 "  set t_Sf=^[3%dm
 "endif
+
+"if osys =~ "SunOS"
+"    set term=xtermc
+"    colorscheme desert
+"elseif osys =~ "Linux"
+"    colorscheme elflord
+"endif
+set termguicolors
+"colorscheme gruvbox
+"colorscheme monokai
+"colorscheme kuroi
+colorscheme elflord
 " }}} Terminal
 
 " Buffer auto commands {{{
@@ -347,5 +361,5 @@ if filereadable(".vimrc.custom")
     source .vimrc.custom
 endif
 
-" vim:fdm=marker
+" vim fdm=marker
 " zR to open all folds
