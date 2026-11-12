@@ -13,3 +13,11 @@ personal, not recommended for wide use...
   - :CocInstall coc-clangd
   - :CocCommand clangd.install
 - Done or something
+
+## Neovim
+
+The Neovim config lives in `nvim/` (Lua, no plugins yet).
+
+- ln -s ~/.vim/nvim ~/.config/nvim
+- Backups go to `~/.local/state/nvim/backup/`, spell words are shared with vim
+- `.vimrc.custom` is replaced by `exrc`: put a `.nvim.lua` in the project and `:trust` it
