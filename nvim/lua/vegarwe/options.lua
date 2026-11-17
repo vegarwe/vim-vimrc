@@ -60,4 +60,4 @@ opt.exrc = true
 
 -- Colours
 opt.termguicolors = true
---vim.cmd.colorscheme('elflord')  -- the old favourite; Neovim's default is nice too
+vim.cmd.colorscheme('elflord')  -- the old favourite; Neovim's default is nice too

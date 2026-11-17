@@ -3,25 +3,7 @@ local map = vim.keymap.set
 -- Leader is still the default '\'
 map('n', '<Leader>w', '<Cmd>w<CR>')
 
--- Make it possible to select text with the mouse (for copying)
-local function toggle_select_mode()
-  if vim.wo.colorcolumn ~= '' then
-    vim.wo.colorcolumn = ''
-    vim.wo.wrap = true
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-  else
-    vim.wo.colorcolumn = '+1'
-    vim.wo.wrap = false
-    vim.wo.number = true
-    vim.wo.relativenumber = true
-  end
-end
-map('n', '<Leader>cc', toggle_select_mode, { desc = 'Toggle select mode' })
-map('n', '<F2>', toggle_select_mode, { desc = 'Toggle select mode' })
-
--- F3 used to be pastetoggle; bracketed paste makes it unnecessary in Neovim
-map('n', '<F4>', '<Cmd>set invnumber<CR>')
+--map('n', '<F4>', '<Cmd>set invnumber<CR>')
 map('n', '<F5>', ':ls<CR>:b')
 
 -- Navigate tabs with space and backspace! Really nice
