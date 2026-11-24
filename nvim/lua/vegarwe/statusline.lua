@@ -70,7 +70,19 @@ local function long_line_warning(buf)
 end
 
 local function diagnostics(buf)
-  local s = vim.diagnostic.status(buf)
+  local s
+  if vim.diagnostic.status then -- Neovim 0.12+
+    s = vim.diagnostic.status(buf)
+  else
+    local counts = vim.diagnostic.count(buf)
+    local parts = {}
+    for sev, label in ipairs({ 'E', 'W', 'I', 'H' }) do
+      if (counts[sev] or 0) > 0 then
+        parts[#parts + 1] = label .. ':' .. counts[sev]
+      end
+    end
+    s = table.concat(parts, ' ')
+  end
   return s ~= '' and '[' .. s .. ']' or ''
 end
 
